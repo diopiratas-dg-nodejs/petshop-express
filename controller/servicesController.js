@@ -1,21 +1,32 @@
 const services = {
     index: (req, res) => {
-        res.status(200).send({
+        res.render('servicos',{
+            title: 'PETSHOP DH',
             services: [
                 {
-                    name: 'Banho'
+                    name: 'Banho',
+                    price: 30.00,
+                    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis a, veritatis voluptates natus, quaerat voluptatibus tenetur in labore ad consequatur repudiandae quia veniam quas deserunt iure voluptatem. Saepe, est ipsam!"
                 },
                 {
-                    name: 'Tosa'
+                    name: 'Tosa',
+                    price: 50.00,
+                    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis a, veritatis voluptates natus, quaerat voluptatibus tenetur in labore ad consequatur repudiandae quia veniam quas deserunt iure voluptatem. Saepe, est ipsam!"
                 },
                 {
-                    name: 'Pelagem'
+                    name: 'Pelagem',
+                    price: 10.00,
+                    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis a, veritatis voluptates natus, quaerat voluptatibus tenetur in labore ad consequatur repudiandae quia veniam quas deserunt iure voluptatem. Saepe, est ipsam!"
                 },
                 {
-                    name: 'Hospedagem'
+                    name: 'Hospedagem',
+                    price: 187.00,
+                    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis a, veritatis voluptates natus, quaerat voluptatibus tenetur in labore ad consequatur repudiandae quia veniam quas deserunt iure voluptatem. Saepe, est ipsam!"
                 },
                 {
-                    name: 'Alimentacao'
+                    name: 'Alimentacao',
+                    price: 50.00,
+                    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis a, veritatis voluptates natus, quaerat voluptatibus tenetur in labore ad consequatur repudiandae quia veniam quas deserunt iure voluptatem. Saepe, est ipsam!"
                 },
                 {
                     name: 'Cirurgia'
