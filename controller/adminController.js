@@ -2,9 +2,10 @@ const { uuid } = require('uuidv4')
 const fs = require('fs')
 
 const create = (req, res) => {
+    console.log(req.files)
     let service = {
         uuid: uuid(),
-        ...req.body
+        ...req.body,
     };
     let serviceStr = JSON.stringify(service);
     fs.writeFileSync('servicos.json', serviceStr);
