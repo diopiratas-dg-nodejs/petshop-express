@@ -1,8 +1,12 @@
 const { uuid } = require('uuidv4')
 const fs = require('fs')
+const { validationResult } = require('express-validator')
 
 const create = (req, res) => {
-    console.log(req.files)
+    const errors = validationResult(req)
+    if(!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+    }
     let service = {
         uuid: uuid(),
         ...req.body,

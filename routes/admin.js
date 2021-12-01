@@ -15,7 +15,20 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage})
 
-router.post('/', upload.array('fotosServico'), adminController.create);
+const { body, checkSchema } = require('express-validator')
+
+const schema = {
+    name: {
+        isLength: {
+            errorMessage: 'Name should be at least 5 chars',
+            options: {min: 5}
+        }
+    },
+} 
+
+router.post('/',
+    checkSchema(schema),
+    upload.array('fotosServico'), adminController.create);
 router.get('/', adminController.index);
 
 module.exports = router;
