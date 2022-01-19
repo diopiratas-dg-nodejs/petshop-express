@@ -32,26 +32,6 @@ const createUser = (req, res) => {
     .catch(function(){console.log('Erro ao gravar no arquivo')})    
 }
 
-
-async function analyseUser(userId){
-    if (userId > 10){
-        throw new Error('Mais que 10 usuarios')
-    }else{
-        console.log('Td certo')
-    }
-}
-
-async function getAllUsers(){
-    const db;
-    const sql = 'SELECT * FROM usuarios'
-    const users = await db.query(sql, [])
-    for (const user of users){
-        await analyseUser(user.id)
-    }
-}
-
-getAllUsers()
-
 const index = (req, res) => {
     const servicesStr = fs.readFileSync('servicos.json', {encoding: 'utf-8'})
     const servicesList = [];
