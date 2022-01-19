@@ -3,7 +3,13 @@
 
     <%- include('./partials/header') %>	
     <main>
-        <!-- aqui vem o login -->
+        <section>
+            <form action="login" method="POST">
+                Email: <input type="email" name="email">
+                Senha: <input type="password" name="senha">
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
     </main>
     <%- include('./partials/footer') %>	
 </body>

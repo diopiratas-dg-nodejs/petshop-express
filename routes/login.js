@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const loginController = require('../controller/loginController')
 
 
-router.get('/', function(req, res){
-    res.render('login', {title: 'PETSHOP DH'})
-});
+router.get('/', loginController.login);
 
 module.exports = router;

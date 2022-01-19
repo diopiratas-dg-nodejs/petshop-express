@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, '/home/magalu/Workspaces/petshop-express/uploads');
+        callback(null, '../uploads');
     },
     filename: (req, file, callback) => {
         console.log(file)
@@ -30,5 +30,6 @@ router.post('/',
     checkSchema(schema),
     upload.array('fotosServico'), adminController.create);
 router.get('/', adminController.index);
+router.post('/cadastroUsuario', adminController.createUser)
 
 module.exports = router;

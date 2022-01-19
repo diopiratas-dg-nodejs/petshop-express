@@ -1,4 +1,20 @@
-<form action='/admin' method='POST' enctype="multipart/form-data">
-    <input type="file" name="fotosServico" multiple/>
-    <button type="submit">Upload</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partials/header') %>	
+    <main>
+        <section>
+            <h1>Cadastro Usuario</h1>
+            <form action="/admin/cadastroUsuario" method="POST">
+                Nome: <input type="text" name="name">
+                Email: <input type="email" name="email">
+                Senha: <input type="password" name="senha">
+                Confirma Senha: <input type="password" name="confirm-password">
+                <button type="submit">Criar</button>            
+            </form>
+        </section>
+    </main>
+    <%- include('./partials/footer') %>	
+</body>
+
+</html>
