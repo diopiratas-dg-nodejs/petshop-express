@@ -27,9 +27,13 @@ const createUser = (req, res) => {
         senha: senhaHash
     }
 
-    fs.writeFile('user.json', JSON.stringify(novoUsuario))
-    .then(function(){res.redirect(201, '/')})
-    .catch(function(){console.log('Erro ao gravar no arquivo')})    
+    try{
+        fs.appendFileSync('user.json', JSON.stringify(novoUsuario))
+        res.redirect(201, '/admin');   
+    }catch{
+        res.redirect(500,'/');
+    }
+    
 }
 
 const index = (req, res) => {
