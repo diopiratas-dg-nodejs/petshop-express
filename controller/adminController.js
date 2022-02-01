@@ -2,6 +2,7 @@ const { uuid } = require('uuidv4')
 const fs = require('fs')
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
+const db = require('../database/models')
 
 async function create(req, res){
     const errors = validationResult(req)
@@ -18,32 +19,33 @@ async function create(req, res){
 }
 
 const createUser = (req, res) => {
-    let {name, email, senha} = req.body
+    let {nome, email, senha} = req.body
     let senhaHash = bcrypt.hashSync(senha, 10)
     let novoUsuario = {
-        id : uuid(),
-        name,
+        nome,
         email,
         senha: senhaHash
     }
 
-    try{
-        fs.appendFileSync('user.json', JSON.stringify(novoUsuario))
-        res.redirect(201, '/admin');   
-    }catch{
-        res.redirect(500,'/');
-    }
-    
-}
+    db.Usuario.create(novoUsuario)
+    .then((result) => {
+      res.status(201).send('OK');
+    })
+    .catch((e) => {
+        console.log(e)
+      res.status(500).send('Erro ao inserir na base');
+    });
+};
 
 const index = (req, res) => {
-    const servicesStr = fs.readFileSync('servicos.json', {encoding: 'utf-8'})
-    const servicesList = [];
-    servicesList.push(JSON.parse(servicesStr))
-    res.render('admin', {
-        title: 'PETSHOP DH',
-        servicesList
-    })
+    if (req.session.logged === true){
+        res.render('admin', {
+            title: 'PETSHOP DH'
+        })
+    }else{
+        console.log('Realize login para acessar a pagina')
+        res.redirect('/')        
+    }
 }
 
 const service = (req, res) => {
