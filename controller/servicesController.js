@@ -4,7 +4,13 @@ const db = require('../database/models');
 
 const services = {
     index: async (req, res) => {
-        const servicesList = await db.Service.findAll();
+        const servicesList = await db.Service.findAll(
+          {
+            include: [
+              {model: db.Categoria, as: 'categoria'}
+            ]
+          }
+        );
         res.render('servicos',{
             title: 'PETSHOP DH',
             servicesList            

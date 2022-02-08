@@ -25,6 +25,20 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
       }
     );
+
+    Service.associate = function(modelos){
+      Service.belongsTo(modelos.Categoria,{
+        as: "categoria",
+        foreignKey: "categoria_id"
+      }),
+      Service.belongsToMany(modelos.Pet,{
+        as: "pet",
+        through: "services_pet",          
+        foreignKey: "id_services",
+        otherKey: "id_pet",
+        timestamps: false
+      });
+    }
   
     return Service;
   };
