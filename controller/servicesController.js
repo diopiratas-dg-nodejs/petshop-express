@@ -3,20 +3,22 @@ const fs = require('fs');
 const db = require('../database/models');
 const { sequelize } = require('../database/models');
 const { QueryTypes } = require('sequelize');
+const servicesRequest = require('../requests/servicesRequest')
 
 const services = {
-    index: async (req, res) => {
-        const servicesList = await db.Service.findAll(
-          {
-            include: [
-              {model: db.Categoria, as: 'categoria'}
-            ]
-          }
-        );
-        res.render('servicos',{
+    index: async (req, res) => {     
+      let servicesList = "";   
+        servicesRequest.getServices()
+        .then(response => {
+          servicesList = response.data
+          res.render('servicos',{
             title: 'PETSHOP DH',
             servicesList            
         });
+        })
+        .catch(err => {
+          console.log(err.message + 'Erro ao consumir api de serviços')
+        })        
     },
     queries: async(req, res) => {
       const { campo } = req.body;
